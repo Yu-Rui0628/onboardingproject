@@ -10,12 +10,12 @@ export async function handler(event: APIGatewayProxyEvent, context: Context): Pr
 
     const sample:String = "David Smith 大卫 斯密斯, Yueling Wang 月林张, Huawen Wu 华文吴,Annie Lee 李安妮";
     const openai = new OpenAI({
-        apiKey: "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" // Api_Key_which store in env file
+        apiKey: "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" // Api_Key_which store in env file
       });
 
 
     //User's input
-    const userMessage: string = "wei da"; 
+    const userMessage: string = "时谜四"; 
     
 
     const chatCompletion = await openai.chat.completions.create({
@@ -32,6 +32,13 @@ export async function handler(event: APIGatewayProxyEvent, context: Context): Pr
                     input contains errors.`
                 },
                 {
+                    role: "assistant",
+                    content: `You are a assistant help to match the name, You will be provided with a list of names: ${sample}, 
+                    and your goal is to return the full name, even if the user provides a simplified version. 
+                    The output format should always be in the form of "English Name + space + Chinese Name,Make sure to provide the most similar result, even if the user's 
+                    input contains errors.`
+                },
+                {
                     role: "user",
                     content: userMessage
                 }
@@ -43,7 +50,7 @@ export async function handler(event: APIGatewayProxyEvent, context: Context): Pr
 
     return {
             statusCode: 200,
-            body: JSON.stringify({message:"The user input is " + userMessage + " The output is " + aiMessage}),
+            body: JSON.stringify({message:"The user input is " + userMessage + " \nAI response " + aiMessage}),
             headers: {
                 "Content-Type": "application/json"
         }

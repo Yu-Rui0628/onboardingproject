@@ -1,7 +1,7 @@
 import * as cdk from 'aws-cdk-lib';
 import { Construct } from 'constructs';
 import { NodejsFunction } from 'aws-cdk-lib/aws-lambda-nodejs';
-import * as lambda from 'aws-cdk-lib/aws-lambda';
+// import * as lambda from 'aws-cdk-lib/aws-lambda';
 
 export class OnboardingProject3Stack extends cdk.Stack {
   constructor(scope: Construct, id: string, props?: cdk.StackProps) {
@@ -14,11 +14,6 @@ export class OnboardingProject3Stack extends cdk.Stack {
       handler: 'handler',
     });
 
-    // new lambdaNodeJs.NodejsFunction(this, 'OnboardingProjectLambda', {
-    //   runtime: lambda.Runtime.NODEJS_20_X, 
-    //   entry: 'path/to/OnboardingProject.ts', 
-    //   handler: 'handler', 
-    // });
   }
 }
 
